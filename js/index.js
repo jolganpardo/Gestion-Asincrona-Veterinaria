@@ -138,3 +138,166 @@ const limpiarFormularioPet = () => {
   inputCedulaPet.value = "";
   formPet.style.display = "none";
 };
+
+const actualizarEstadoSalud = () => {
+  const nombre = inputNombreActualizar.value.trim();
+  const estado = inputNuevoEstado.value;
+
+  if (!nombre || !estado) {
+      alert("Por favor, completa todos los campos.");
+      return;
+  }
+  setTimeout(() => {
+      const mascota = mascotas.find(m => m.nombre.toLowerCase() === nombre.toLowerCase());
+      if (mascota) {
+          mascota.estado = estado;
+          alert("Estado De Salud Actualizada ^_^");
+          limpiarFormularioActualizarSalud();
+      } else {
+          alert("Mascota no encontrada ❌");
+      }
+  }, 1000);
+};
+
+const eliminarMascota = () => {
+  const nombre = inputNombreEliminar.value.trim();
+
+  if (!nombre) {
+      alert("Por favor, ingresa el nombre de la mascota a eliminar.");
+      return;
+  }
+  setTimeout(() => {
+      const index = mascotas.findIndex(m => m.nombre.toLowerCase() === nombre.toLowerCase());
+      if (index !== -1) {
+          mascotas.splice(index, 1);
+          alert("Mascota eliminada exitosamente ✅");
+          limpiarFormularioEliminar();
+      } else {
+          alert("Mascota no encontrada ❌");
+      }
+  }, 2000);
+};
+
+const verMascotasDeDueño = () => {
+  const cedula = inputCedulaVer.value.trim();
+  const tablaMascotasDueño = document.getElementById("tabla_mascotas_dueño");
+  const cuerpoTablaMascotasDueño = document.getElementById("cuerpo_tabla_mascotas_dueño");
+
+  if (!cedula) {
+      alert("Por favor, ingresa la cédula del dueño.");
+      return;
+  }
+
+  setTimeout(() => {
+      const mascotasDueño = mascotas.filter(m => m.cedulaDueño === cedula);
+      
+      cuerpoTablaMascotasDueño.innerHTML = "";
+
+      if (mascotasDueño.length > 0) {
+          mascotasDueño.forEach(mascota => {
+              const fila = document.createElement("tr");
+              fila.innerHTML = `
+                  <td>${mascota.nombre}</td>
+                  <td>${mascota.especie}</td>
+                  <td>${mascota.edad} años</td>
+                  <td>${mascota.peso}</td>
+                  <td>${mascota.estado}</td>
+              `;
+              cuerpoTablaMascotasDueño.appendChild(fila);
+          });
+
+          tablaMascotasDueño.style.display = "table";
+          limpiarFormularioVerDueño();
+      } else {
+          cuerpoTablaMascotasDueño.innerHTML = "";
+          alert("No se encontraron mascotas para ese dueño ❌");
+      }
+  }, 2000);
+};
+
+const buscarMascota = () => {
+  const nombre = inputBuscarNombre.value.trim();
+
+  if (!nombre) {
+      alert("Por favor, ingresa el nombre de la mascota que deseas buscar.");
+      return;
+  }
+  setTimeout(() => {
+      const mascota = mascotas.find(m => m.nombre.toLowerCase() === nombre.toLowerCase());
+      if (mascota) {
+          cuerpoTabla.innerHTML = "";
+          const fila = document.createElement("tr");
+          fila.innerHTML = `
+              <td>${mascota.nombre}</td>
+              <td>${mascota.especie}</td>
+              <td>${mascota.edad}</td>
+              <td>${mascota.peso}</td>
+              <td>${mascota.estado}</td>
+              <td>${mascota.cedulaDueño}</td>
+          `;
+          cuerpoTabla.appendChild(fila);
+          tabla.style.display = "table";
+      } else {
+          alert("Mascota no encontrada ❌");
+          tabla.style.display = "block";
+      }
+  }, 1500);
+};
+
+const listarMascotas = () => {
+  setTimeout(() => {
+      if (mascotas.length > 0) {
+          cuerpoTablaMascotas.innerHTML = "";
+          mascotas.forEach(m => {
+              const dueño = dueños.find(d => d.cedula === m.cedulaDueño);
+              const fila = document.createElement("tr");
+              fila.innerHTML = `
+                  <td>${dueño.nombre}</td>
+                  <td>${m.nombre}</td>
+                  <td>${m.especie}</td>
+                  <td>${m.edad}</td>
+                  <td>${m.peso}</td>
+                  <td>${m.estado}</td>
+                  <td>${m.cedulaDueño}</td>
+              `;
+              cuerpoTablaMascotas.appendChild(fila);
+          });
+          tablaMascotas.style.display = "table";
+      } else {
+          alert("No hay Mascotas");
+          tablaMascotas.style.display = "none";
+      }
+  });
+};
+
+const limpiarFormularioActualizarSalud = () => {
+  inputNombreActualizar.value = "";
+  inputNuevoEstado.value = "";
+  formActualizarSalud.style.display = "none";
+};
+
+const limpiarFormularioEliminar = () => {
+  inputNombreEliminar.value = "";
+  formEliminar.style.display = "none";
+};
+
+const limpiarFormularioVerDueño = () => {
+  inputCedulaVer.value = "";
+  formVerDueño.style.display = "none";
+};
+
+const limpiarFormularioBuscar = () => {
+  inputBuscarNombre.value = "";
+  formBuscar.style.display = "none";
+};
+
+btnGuardarDueño.onclick = registrarDueño;
+btnGuardarPet.onclick = registrarMascota;
+document.getElementById("guardar_actualizar").onclick = actualizarEstadoSalud;
+document.getElementById("guardar_eliminar").onclick = eliminarMascota;
+document.getElementById("guardar_ver").onclick = verMascotasDeDueño;
+document.getElementById("guardar_buscar").onclick = buscarMascota;
+formBuscar.onsubmit = (e) => {
+  e.preventDefault();
+  buscarMascota();
+};
