@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐶 Gestión Asíncrona de una Veterinaria 🐱</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+
+    <button id="agregar_dueño">Agregar Dueño</button>
+    <div id="form_dueño" style="display: none;">
+        <h1>Ingresar Datos Dueños de Mascotas</h1>
+        <label for="nombre_dueño">Nombre Dueño: </label>
+        <input type="text" id="nombre_dueño" />
+        <label for="cedula_reg">Cédula: </label>
+        <input type="number" id="cedula_reg" />
+        <label for="telefono">Teléfono: </label>
+        <input type="tel" id="telefono" />
+        <label for="email">Email: </label>
+        <input type="email" id="email" />
+        <button id="guardar_dueño">Agregar 📥</button>
+    </div>
+
+    <button id="agregar_pet">Agregar Mascota</button>
+    <div id="form_pet" style="display: none;">
+        <h1>Ingresar Datos de Mascotas</h1>
+        <label for="nombre_pet">Nombre Mascota: </label>
+        <input type="text" id="nombre_pet" />
+        <label for="especie">Especie: </label>
+        <select id="especie">
+            <option value="" disabled selected>Selecciona Una Opción</option>
+            <option value="Perro">Perro</option>
+            <option value="Gato">Gato</option>
+            <option value="Ave">Ave</option>
+            <option value="Reptil">Reptil</option>
+            <option value="Otro">Otro</option>
+        </select>
+        <label for="edad">Edad (años): </label>
+        <input type="number" id="edad" />
+        <label for="peso">Peso (kg): </label>
+        <input type="number" id="peso" />
+        <label for="estados_salud">Estado de Salud: </label>
+        <select id="estados_salud">
+            <option value="" disabled selected>Selecciona Una Opción</option>
+            <option value="Sano">Sano</option>
+            <option value="Enfermo">Enfermo</option>
+            <option value="En tratamiento">En tratamiento</option>
+        </select>
+        <label for="cedula_pet">Cédula Dueño: </label>
+        <input type="number" id="cedula_pet" />
+        <button id="guardar_pet">Agregar 📥</button>
+    </div>
+
+    <button id="buscar_mascota">🔍 Buscar Mascota</button>
+    <div id="form_buscar" style="display: none;">
+        <label for="buscar_nombre">Nombre: </label>
+        <input type="text" id="buscar_nombre" />
+        <button id="guardar_buscar">Buscar 📥</button>
+
+        <table border="1" id="tabla_resultados" style="margin-top: 20px; display: none;">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Especie</th>
+                    <th>Edad</th>
+                    <th>Peso</th>
+                    <th>Estado de Salud</th>
+                    <th>Cédula Dueño</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <button id="actualizar_salud">💉 Actualizar Salud Mascota</button>
+    <div id="form_actualizar_salud" style="display: none;">
+        <h1>Actualizar Estado de Salud de Mascota</h1>
+        <label for="nombre_actualizar">Nombre Mascota: </label>
+        <input type="text" id="nombre_actualizar" />
+        <label for="nuevo_estado">Nuevo Estado de Salud: </label>
+        <select id="nuevo_estado">
+            <option value="" disabled selected>Selecciona Una Opción</option>
+            <option value="Sano">Sano</option>
+            <option value="Enfermo">Enfermo</option>
+            <option value="En tratamiento">En tratamiento</option>
+        </select>
+        <button id="guardar_actualizar">Actualizar 📥</button>
+    </div>
+
+    <button id="eliminar_mascota">❌ Eliminar Mascota</button>
+    <div id="form_eliminar" style="display: none;">
+        <h1>Eliminar Mascota</h1>
+        <label for="nombre_eliminar">Nombre Mascota: </label>
+        <input type="text" id="nombre_eliminar" />
+        <button id="guardar_eliminar">Eliminar 📥</button>
+    </div>
+
+    <button id="ver_mascotas_dueño">📋 Ver Mascotas de un Dueño</button>
+    <div id="form_ver_dueño" style="display: none;">
+        <h1>Ver Mascotas de un Dueño</h1>
+        <label for="cedula_ver">Cédula Dueño: </label>
+        <input type="number" id="cedula_ver" />
+        <button id="guardar_ver">Ver Mascotas 📥</button>
+    </div>
+
+    <button id="listar_mascotas">Ver Todas las Mascotas</button>
+    <div id="ver_todas_mascotas" style="display: none;">
+        <table border="1" id="tabla_mascotas" style="margin-top: 20px;">
+            <thead>
+                <tr>
+                    <th>Dueño</th>
+                    <th>Mascota</th>
+                    <th>Especie</th>
+                    <th>Edad (Años)</th>
+                    <th>Peso (Kg)</th>
+                    <th>Estado de Salud</th>
+                    <th>Cédula Dueño</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+</body>
+<script src="/js/index.js"></script>
+
+</html>
