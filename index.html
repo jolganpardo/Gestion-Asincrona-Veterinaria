@@ -104,6 +104,20 @@
         <label for="cedula_ver">Cédula Dueño: </label>
         <input type="number" id="cedula_ver" />
         <button id="guardar_ver">Ver Mascotas 📥</button>
+
+        <table id="tabla_mascotas_dueño" style="display:none;">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Especie</th>
+                    <th>Edad</th>
+                    <th>Peso</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpo_tabla_mascotas_dueño"></tbody>
+        </table>
+
     </div>
 
     <button id="listar_mascotas">Ver Todas las Mascotas</button>
