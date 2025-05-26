@@ -207,7 +207,6 @@ const verMascotasDeDueño = () => {
           });
 
           tablaMascotasDueño.style.display = "table";
-          limpiarFormularioVerDueño();
       } else {
           cuerpoTablaMascotasDueño.innerHTML = "";
           alert("No se encontraron mascotas para ese dueño ❌");
